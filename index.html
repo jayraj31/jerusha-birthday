@@ -51,9 +51,10 @@ body {
 /* ✍️ TEXT */
 .say {
   font-size: 18px;
+  line-height: 1.6;
 }
 
-/* 🖼️ IMAGE (FIXED) */
+/* 🖼️ IMAGE */
 #photo img {
   width: 180px;
   height: 180px;
@@ -85,7 +86,7 @@ body {
   to { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* 🎂 OVERLAY */
+/* 🎂 BIRTHDAY OVERLAY */
 #birthday-overlay {
   display: none;
   position: fixed;
@@ -112,16 +113,28 @@ body {
   to { text-shadow: 0 0 30px #ff4d6d; }
 }
 
-/* 📱 FORCE CENTER ON MOBILE */
+/* 📱 MOBILE FIX (CENTER + ZOOM TEXT) */
 @media (max-width: 768px) {
   #main {
-    min-height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
   }
+
   #content {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
+  }
+
+  .say {
+    font-size: 20px;   /* 🔍 ZOOM TEXT */
+  }
+
+  #photo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  #clock-box {
+    font-size: 18px;
   }
 }
 </style>
@@ -180,8 +193,8 @@ setInterval(function () {
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 800);
+  setTimeout(function(){ heart.remove(); }, 6000);
+}, 900);
 </script>
 
 <script type="text/javascript">
@@ -202,15 +215,19 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+/* 🎂 SHOW OVERLAY ON JAN 6 */
 (function(){
   var today = new Date();
   if (today.getMonth() === 0 && today.getDate() === 6) {
-    setTimeout(() => document.getElementById("birthday-overlay").style.display = "block", 3000);
-    setTimeout(() => document.getElementById("birthday-overlay").style.display = "none", 15000);
+    setTimeout(function(){
+      document.getElementById("birthday-overlay").style.display = "block";
+    }, 3000);
+    setTimeout(function(){
+      document.getElementById("birthday-overlay").style.display = "none";
+    }, 15000);
   }
 })();
 </script>
 
 </body>
 </html>
-
