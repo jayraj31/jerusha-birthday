@@ -112,14 +112,17 @@ body {
   to { text-shadow: 0 0 30px #ff4d6d; }
 }
 
-/* 📱 MOBILE */
+/* 📱 FORCE CENTER ON MOBILE */
 @media (max-width: 768px) {
-  .say { font-size: 16px; }
-  #photo img {
-    width: 150px;
-    height: 150px;
+  #main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  #clock-box { font-size: 16px; }
+  #content {
+    transform: translateY(-20px);
+  }
 }
 </style>
 </head>
@@ -210,3 +213,4 @@ updateClock();
 
 </body>
 </html>
+
